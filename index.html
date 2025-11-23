@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Lud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <header id="main-header" class="hidden">
+        <nav>
+            <div class="logo">LudLibrary</div>
+            <ul class="nav-links">
+                <li onclick="router('catalog')">Catálogo</li>
+                <li onclick="router('my-list')">Minha Lista</li>
+                <li onclick="router('reserved')">Reservados</li>
+                <li onclick="router('admin')">Gerenciar Livros</li>
+                <li onclick="logout()">Sair</li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="auth-section" class="active-section">
+            <div class="auth-container">
+                <h2>Bem-vindo à Biblioteca</h2>
+
+                <div id="login-box">
+                    <h3>Login</h3>
+                    <input type="email" id="login-email" placeholder="Seu e-mail">
+                    <input type="password" id="login-pass" placeholder="Sua senha">
+                    <button onclick="handleLogin()">Entrar</button>
+                    <p>Não tem conta? <span class="toggle-auth" onclick="toggleAuthMode()">Cadastre-se</span></p>
+                </div>
+
+                <div id="register-box" class="hidden">
+                    <h3>Criar Conta</h3>
+                    <input type="text" id="reg-name" placeholder="Nome completo">
+                    <input type="email" id="reg-email" placeholder="E-mail válido">
+                    <input type="password" id="reg-pass" placeholder="Senha (mín. 6 caracteres)">
+                    <button onclick="handleRegister()">Cadastrar</button>
+                    <p>Já tem conta? <span class="toggle-auth" onclick="toggleAuthMode()">Fazer Login</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalog-section" class="hidden section-content">
+            <h2>Catálogo Disponível</h2>
+            <div id="catalog-grid" class="grid-container">
+                </div>
+        </section>
+
+        <section id="my-list-section" class="hidden section-content">
+            <h2>Minha Lista de Leitura</h2>
+            <div id="my-list-grid" class="grid-container">
+                </div>
+        </section>
+
+        <section id="reserved-section" class="hidden section-content">
+            <h2>Livros Reservados</h2>
+            <div id="reserved-grid" class="grid-container"></div>
+        </section>
+
+        <section id="admin-section" class="hidden section-content">
+            <h2>Gerenciar Catálogo</h2>
+
+            <div class="admin-container">
+                <div class="form-card">
+                    <h3 id="form-title">Novo Livro</h3>
+                    <input type="hidden" id="book-id">
+
+                    <input type="text" id="book-title" placeholder="Título do Livro">
+                    <input type="text" id="book-author" placeholder="Autor">
+                    <input type="text" id="book-genre" placeholder="Gênero (Ex: Fantasia)">
+                    <input type="text" id="book-cover" placeholder="URL da Imagem da Capa">
+
+                    <div class="form-actions">
+                        <button class="btn-saveBook" onclick="handleBookSave()">Salvar Livro</button>
+                        <button onclick="resetForm()" class="btn-outline">Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="list-card">
+                    <h3>Livros Cadastrados</h3>
+                    <table id="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
